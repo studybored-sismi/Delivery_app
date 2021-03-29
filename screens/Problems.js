@@ -1,34 +1,60 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,FlatList,SafeAreaView } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icons from 'react-native-vector-icons/Ionicons';
+import {useTheme } from 'react-native-paper'
+import { useState } from 'react/cjs/react.development';
 
-const Problems= ()=>{
-    return(
-        <View style={{paddingTop:50,backgroundColor:"#f5fffa",paddingBottom:300}}>
-                 <View style={{flexDirection:'row'}}>
-            <Icons name="arrow-back" size={30} style={{marginLeft:20,marginRight:20,color:"#FDC913"}}></Icons>
-            <Text style={{fontSize:24,marginBottom:40,color:"#696969",fontFamily:"OpenSansBold",}}>General Problems</Text>
+  const Problem = ({navigation}) => {
+    const { colors } = useTheme()
+    const theme = useTheme()
+
+    const [problem,setProblem]= useState([
+      {name:'Not Receiving Orders',key:'1'},
+      {name:'Orders',key:'2'},
+    ]);
+
+  
+    return (
+      
+          <View style={{ paddingTop: 10, paddingBottom: 300 }}>
+            <View style={{ flexDirection: 'row' }}>
+                <TouchableOpacity onPress={()=>navigation.goBack()}>
+                    <Icons name="arrow-back" size={30} style={{ marginLeft: 20, marginRight: 50, color: "#FDC913" }}></Icons>
+                </TouchableOpacity>
+                <Text style={{ fontSize: 24, marginBottom: 40, color:colors.text, fontFamily: "OpenSansBold", }}>General Problems</Text>
             </View>
-
-            <View style={styles.view5}>
-            <Text  onPress={() => navigation.navigate("COD")}
-            style={{paddingLeft:60,paddingTop:4,color:"#696969",fontFamily:"OpenSansSemiBold",}}>Not Receiving Orders</Text>
-           
-            </View>
-
             
-            <View style={styles.view5}>
-            <Text  onPress={() => navigation.navigate("COD")}
-            style={{paddingLeft:110,marginRight:90,color:"#696969",fontFamily:"OpenSansSemiBold",paddingTop:5}}>Orders</Text>
-           
+      
+        <FlatList
+          data={problem}
+          renderItem={({ item }) =>(
+            <View style={[styles.view5,{backgroundColor:colors.card}]}>
+            <Text style={{paddingLeft: 60,fontSize:18, color:colors.text,
+            fontFamily: "OpenSansSemiBold", }}>{item.name}</Text>
             </View>
-        </View>
-    )
-}
-
-export default Problems;
-
-const styles= StyleSheet.create({
+          )}
+        
+        
+        />
+        
+     
+     
+      </View>
+    );
+  }
+  
+  const styles = StyleSheet.create({
+  
+    item: {
+      backgroundColor: '#f9c2ff',
+      padding: 20,
+      marginVertical: 8,
+      marginHorizontal: 16,
+    },
+    title: {
+      fontSize: 32,
+    },
     view5: {
         marginBottom: 50,
         marginLeft: 35,
@@ -42,11 +68,13 @@ const styles= StyleSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 5,
         // paddingLeft: 120,
-        padding:10,
-        marginTop:20,
-        marginRight:30,
-        flexDirection:'row'
+        padding: 10,
+        marginTop: 20,
+        marginRight: 30,
+        flexDirection: 'row'
 
     },
-    
-})
+
+  });
+  
+  export default Problem;

@@ -3,22 +3,28 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icons from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import {useTheme } from 'react-native-paper'
+
 const Document = ({navigation}) =>{
+  const { colors } = useTheme()
+  const theme = useTheme()
     var items
     const [item, setItem] = useState('Adhaar card');
     return(
-        <View style={{paddingTop:50,backgroundColor:"#f5fffa",paddingBottom:300}}>
+        <View style={{paddingTop:10,paddingBottom:300}}>
           
           <View style={{flexDirection:'row'}}>
-            <Icons name="arrow-back" size={30} style={{marginLeft:20,marginRight:20,color:"#FDC913"}}></Icons>
+            <TouchableOpacity onPress={()=>navigation.goBack()}>
+            <Icons name="arrow-back" size={30} style={{marginLeft:20,marginRight:60,color:"#FDC913"}}></Icons>
+            </TouchableOpacity>
             <Text style={{fontSize:25,marginBottom:40,fontFamily:"OpenSansBold",
-              color:"#696969"}}>Documents</Text>
+              color:colors.text}}>Documents</Text>
             </View>
 
-            <Text style={{marginLeft:45,color:"#696969",fontFamily:"OpenSansRegular",}}>Driving Licence Number</Text>
+            <Text style={{marginLeft:45,color:colors.text,fontFamily:"OpenSansRegular",}}>Driving Licence Number</Text>
             <TextInput style={styles.input} keyboardType="number-pad"></TextInput>
 
-            <Text style={{marginLeft:45,marginTop:20,color:"#696969",fontFamily:"OpenSansRegular",
+            <Text style={{marginLeft:45,marginTop:20,color:colors.text,fontFamily:"OpenSansRegular",
               marginBottom:10}}>Govt.Photo ID Proof</Text>
 
             <DropDownPicker
@@ -29,25 +35,25 @@ const Document = ({navigation}) =>{
 
             ]}
             defaultValue={items}
-            containerStyle={{ height: 40, width: "75%", marginLeft: 42 }}
+            containerStyle={{ height: 40, width: "75%", marginLeft: 42,}}
             placeholder="Select Id Proof"
           
             globalTextStyle={{color:"#696969",fontFamily:"OpenSansRegular"}}
             itemStyle={{
               justifyContent: 'flex-start'
             }}
-            dropDownStyle={{ backgroundColor: '#fafafa' }}
+            dropDownStyle={{ backgroundColor:"white" }}
             onChangeItem={(item) => setItem(item.value)}
 
           />
 
             <Text style={{marginLeft:45,marginTop:20,
-              fontFamily:"OpenSansRegular",color:"#696969"}}>ID Number</Text>
-            <TextInput style={styles.input} keyboardType="number-pad"></TextInput>
+              fontFamily:"OpenSansRegular",color:colors.text}}>ID Number</Text>
+            <TextInput style={[styles.input,{backgroundColor:'white'}]} keyboardType="number-pad"></TextInput>
 
-            <TouchableOpacity style={{ paddingTop: 5 }} onPress={() =>navigation.navigate("Earnings")}>
+            <TouchableOpacity style={{ paddingTop: 5 }} onPress={() =>navigation.navigate("IdPermits")}>
                             <Text style={{
-                                backgroundColor: "#FDC913",fontSize:15,fontFamily:"OpenSansSemiBold",
+                                backgroundColor:colors.card,fontSize:15,fontFamily:"OpenSansSemiBold",
                                 color: "white", height: 38, paddingTop: 8, 
                                 paddingLeft: 36, paddingRight: 20, paddingBottom: 10,
                                  borderRadius: 20, width: "30%", marginLeft:125,marginTop:20
@@ -70,7 +76,7 @@ const styles= StyleSheet.create({
        width:"75%",
        borderRadius:2,
        backgroundColor:"white",
-       color:"#696969",
+      color:"#696969",
        paddingLeft:20,
        fontFamily:"OpenSansRegular"
     

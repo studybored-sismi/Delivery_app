@@ -3,23 +3,25 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icons from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import {useTheme } from 'react-native-paper'
 
 
 const ReferFriend2 = ({navigation}) =>{
+    const { colors } = useTheme()
+    const theme = useTheme()
   
     return(
         <View style={{paddingTop:50,backgroundColor:"#f5fffa",paddingBottom:300}}>
           
           <View style={{flexDirection:'row'}}>
             <Icons name="arrow-back" size={30} style={{marginLeft:20,marginRight:20,color:"#FDC913"}}></Icons>
-            <Text style={{fontSize:30,marginBottom:30,color:"#696969",fontFamily:"OpenSansBold"}}>Refer a Friend</Text>
+            <Text style={[styles.friend,{color:colors.text}]}>Refer a Friend</Text>
             </View>
-            <View style={styles.view5}>
-                <Text style={{paddingLeft:30,fontSize:18,color:"#696969",
-                fontFamily:"OpenSansSemiBold",}}>Refer your friend to join</Text>
-                <TouchableOpacity style={{ paddingTop: 5 }} onPress={() =>navigation.navigate("Earnings")}>
+            <View style={[styles.view5,{backgroundColor:colors.card}]}>
+                <Text style={[styles.refer,{color:colors.text}]}>Refer your friend to join</Text>
+                <TouchableOpacity style={{ paddingTop: 5 }} onPress={() =>navigation.navigate("ReferFriend")}>
                             <Text style={{
-                                backgroundColor: "#FDC913",fontSize:15,fontWeight:'700',
+                                backgroundColor:colors.primary,fontSize:15,fontWeight:'700',
                                 color: "white", height: 38, paddingTop: 8, 
                                 paddingLeft: 35, paddingRight: 20, paddingBottom: 10,
                                  borderRadius: 20, width: "50%", marginLeft:85,marginTop:20
@@ -27,15 +29,16 @@ const ReferFriend2 = ({navigation}) =>{
                         </TouchableOpacity>
             </View>
 
-            <Text style={{fontSize:18,marginLeft:25,color:"#696969",fontFamily:"OpenSansSemiBold",}}>Your Referrals</Text>
-            <View style={styles.view4}>
-                <Text style={{marginLeft:15,fontSize:16,color:"#696969",fontFamily:"OpenSansRegular",}}>Friend's Name</Text>
-                <Text style={{marginLeft:15,fontSize:16,marginTop:10,color:"#696969",fontFamily:"OpenSansRegular",}}>Date, Time</Text>
+            <Text style={[styles.your,{color:colors.text}]}>Your Referrals</Text>
+           
+            <View style={[styles.view4,{backgroundColor:colors.card}]}>
+                <Text style={{marginLeft:15,fontSize:16,color:colors.text,fontFamily:"OpenSansRegular",}}>Friend's Name</Text>
+                <Text style={{marginLeft:15,fontSize:16,marginTop:10,color:colors.text,fontFamily:"OpenSansRegular",}}>Date, Time</Text>
             </View>
 
-            <View style={styles.view4}>
-                <Text style={{fontSize:16,marginLeft:15,color:"#696969",fontFamily:"OpenSansRegular",}}>Friend's Name</Text>
-                <Text style={{marginLeft:15,fontSize:16,marginTop:10,color:"#696969",fontFamily:"OpenSansRegular",}}>Date, Time</Text>
+            <View style={[styles.view4,{backgroundColor:colors.card}]}>
+                <Text style={{fontSize:16,marginLeft:15,color:colors.text,fontFamily:"OpenSansRegular",}}>Friend's Name</Text>
+                <Text style={{marginLeft:15,fontSize:16,marginTop:10,color:colors.text,fontFamily:"OpenSansRegular",}}>Date, Time</Text>
             </View>
            
         </View>
@@ -97,6 +100,23 @@ const styles= StyleSheet.create({
     //flexDirection:'row'
 
 },
-  
+friend:{
+    fontSize:30,
+    marginBottom:30,
+    color:"#696969",
+    fontFamily:"OpenSansBold"
+},
+refer:{
+    paddingLeft:30,
+    fontSize:18,
+    color:"#696969",
+    fontFamily:"OpenSansSemiBold"
+},
+your:{
+    fontSize:18,
+    marginLeft:25,
+    color:"#696969",
+    fontFamily:"OpenSansSemiBold",
+}
 
 })

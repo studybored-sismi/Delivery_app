@@ -1,26 +1,38 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React,{useState} from 'react';
+import { StyleSheet, Text, View,FlatList } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icons from 'react-native-vector-icons/Ionicons';
+import {useTheme } from 'react-native-paper'
 
-const WeekPayouts= ()=>{
+const WeekPayouts= ({navigation})=>{
+    const { colors } = useTheme()
+    const theme = useTheme()
+    const [problem,setProblem]= useState([
+        {name:'Received Less Payout',key:'1'},
+        {name:'Did not Receive Payout',key:'2'},
+      ]);
+
     return(
-        <View style={{paddingTop:50,backgroundColor:"#f5fffa",paddingBottom:300}}>
+        <View style={{paddingTop:10,paddingBottom:300}}>
                  <View style={{flexDirection:'row'}}>
+                     <TouchableOpacity onPress={()=>navigation.goBack()}>
             <Icons name="arrow-back" size={30} style={{marginLeft:20,marginRight:10,color:"#FDC913"}}></Icons>
-            <Text style={{fontSize:18,marginBottom:40,color:"#696969",fontFamily:"OpenSansBold",marginTop:5}}>Weekly Payout Related Problems</Text>
+            </TouchableOpacity>
+            <Text style={{fontSize:20,marginBottom:40,color:colors.text,
+            fontFamily:"OpenSansBold",marginTop:5}}>Weekly Payout Related Problems</Text>
             </View>
 
-            <View style={styles.view5}>
-            <Text  onPress={() => navigation.navigate("COD")}
-            style={{paddingLeft:60,paddingTop:5,color:"#696969",fontFamily:"OpenSansSemiBold",}}>Received Less Payout</Text>
-          
+            <FlatList
+          data={problem}
+          renderItem={({ item }) =>(
+            <View style={[styles.view5,{backgroundColor:colors.card}]}>
+            <Text style={{paddingLeft: 35,fontSize:18, color:colors.text,
+            fontFamily: "OpenSansSemiBold", }} onPress={() => navigation.navigate("ReportProblem")}>{item.name}</Text>
             </View>
-
-            <View style={styles.view5}>
-            <Text  onPress={() => navigation.navigate("COD")}
-            style={{paddingLeft:55,paddingTop:5,color:"#696969",fontFamily:"OpenSansSemiBold",}}>Did not Receive Payout</Text>
-          
-            </View>
+          )}
+        
+        
+        />
         </View>
     )
 }

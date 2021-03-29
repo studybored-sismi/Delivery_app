@@ -1,25 +1,33 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icons from 'react-native-vector-icons/Ionicons';
+import {useTheme } from 'react-native-paper'
 
-const Settings= ()=>{
+const Settings= ({navigation})=>{
+    const { colors } = useTheme()
+    const theme = useTheme()
     return(
-        <View style={{paddingTop:50,paddingBottom:300,backgroundColor:"#f5fffa"}}>
+        <View style={{paddingTop:10}}>
                  <View style={{flexDirection:'row'}}>
-            <Icons name="arrow-back" size={30} style={{marginLeft:20,marginRight:20,color:"#FDC913"}}></Icons>
-            <Text style={{fontSize:24,color:"#696969",fontFamily:"OpenSansBold",marginBottom:40}}>Settings</Text>
+         <TouchableOpacity onPress={()=>navigation.goBack()}>
+            <Icons name="arrow-back" size={30} style={{marginLeft:20,marginRight:100,color:"#FDC913"}}></Icons>
+            </TouchableOpacity>
+            <Text style={[styles.Settings,{color:colors.text}]}>Settings</Text>
             </View>
 
-            <View style={styles.view5}>
-            <Text  onPress={() => navigation.navigate("COD")}
-            style={{paddingLeft:100,paddingTop:5,color:"#696969",fontSize:17,fontFamily:"OpenSansSemiBold",}}>Contact</Text>
-          
+            <View style={[styles.view5,{backgroundColor:colors.card}]}>
+                <TouchableOpacity onPress={() => navigation.navigate("Contact")}>
+            <Text  
+            style={[styles.contact,{color:colors.text}]}>Contact</Text>
+          </TouchableOpacity>
             </View>
 
-            <View style={styles.view5}>
-            <Text  onPress={() => navigation.navigate("COD")}
-            style={{paddingLeft:110,paddingTop:5,fontSize:17,color:"#696969",fontFamily:"OpenSansSemiBold",}}>Mode</Text>
-          
+            <View style={[styles.view5,{backgroundColor:colors.card}]}>
+                <TouchableOpacity onPress={() => navigation.navigate("Mode")}>
+            <Text  
+            style={[styles.mode,{color:colors.text}]}>Mode</Text>
+          </TouchableOpacity>
             </View>
         </View>
     )
@@ -30,9 +38,8 @@ export default Settings;
 const styles= StyleSheet.create({
     view5: {
         marginBottom: 30,
-        marginLeft: 35,
-        height: 50,
-        width: "80%",
+        marginLeft: 30,
+       
         backgroundColor: "white",
         borderRadius: 10,
         elevation: 20,
@@ -40,12 +47,30 @@ const styles= StyleSheet.create({
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.5,
         shadowRadius: 5,
-        // paddingLeft: 120,
+       
         padding:10,
         marginTop:20,
         marginRight:30,
-        flexDirection:'row'
+        
 
     },
+    Settings:{
+        fontSize:24,
+        color:"#696969",
+        fontFamily:"OpenSansBold",
+        marginBottom:40
+},
+contact:{
+    color:"#696969",
+    fontSize:17,
+    fontFamily:"OpenSansSemiBold",
+    textAlign:'center'
+},
+mode:{
+    fontSize:17,
+    color:"#696969",
+    fontFamily:"OpenSansSemiBold",
+    textAlign:'center'
+}
     
 })

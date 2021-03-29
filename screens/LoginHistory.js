@@ -2,55 +2,52 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Icons from 'react-native-vector-icons/Ionicons';
 import Icon1 from 'react-native-vector-icons/AntDesign';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import {useTheme } from 'react-native-paper'
 
 const LoginHistory= ({navigation})=>{
+    const { colors } = useTheme()
+    const theme = useTheme()
     return(
-        <View style={{paddingTop:50,backgroundColor:"#f5fffa",paddingBottom:400}}>
+        <View style={{paddingTop:10,paddingBottom:400}}>
                  <View style={{flexDirection:'row'}}>
-            <Icons name="arrow-back" size={30} onPress={() => navigation.navigate("DeliveryTip")}
-            style={{marginLeft:20,marginRight:20,color:"#FDC913"}}></Icons>
-            <Text style={{fontSize:24,marginBottom:40,color:"#696969",fontFamily:"OpenSansBold",}}>Login History</Text>
+                     <TouchableOpacity>
+            <Icons name="arrow-back" size={30} onPress={()=>navigation.goBack()}
+            style={{marginLeft:20,marginRight:70,color:"#FDC913"}}></Icons>
+            </TouchableOpacity>
+            <Text style={[styles.login,{color:colors.text}]}>Login History</Text>
             </View>
 
-            <View style={styles.view5}>
+            <View style={[styles.view5,{backgroundColor:colors.card}]}>
             <Text  onPress={() => navigation.navigate("COD")}
-            style={{paddingLeft:30,paddingTop:20,marginRight:90,fontSize:15,fontFamily:"OpenSansRegular",
-            color:"#696969"}}>Today so far </Text>
-            <Text style={{paddingTop:20,fontSize:15,fontFamily:"OpenSansRegular",
-                    color:"#696969"}}>OM</Text>
+            style={[styles.today,{color:colors.text}]}>Today so far </Text>
+            <Text style={[styles.om,{color:colors.text}]}>OM</Text>
             </View>
-            <Text style={{marginLeft:35,fontSize:20,fontFamily:"OpenSansSemiBold",
-                    color:"#696969"}}>Past Login Information</Text>
+            <Text style={[styles.past,{color:colors.text}]}>Past Login Information</Text>
 
-            <View style={styles.view4}>
+            <View style={[styles.view4,{backgroundColor:colors.card}]}>
                 <View style={{flexDirection:'row'}}>
-                <Text style={{paddingLeft:40,paddingTop:20,paddingRight:40,fontSize:15,fontFamily:"OpenSansRegular",
-                    color:"#696969"}}>This week</Text>
-                <Text style={{fontSize:15,paddingLeft:55,paddingTop:20,fontFamily:"OpenSansRegular",
-                    color:"#696969"}}>5 hr</Text>
+                <Text style={[styles.last,{color:colors.text}]}>This week</Text>
+                <Text style={[styles.hr2,{color:colors.text}]}>5 hr</Text>
                 </View>
 
                 <View style={{flexDirection:'row'}}>
-                <Text style={{fontSize:15,paddingTop:15,paddingLeft:40,fontFamily:"OpenSansRegular",
-                    color:"#696969"}}>05 Feb - 08 Feb</Text>
-                <Icon1 name="arrowright" size={15} onPress={() =>navigation.navigate("Payout")}
-                style={{paddingLeft:56,paddingTop:15,fontSize:25,color:"#FDC913",}}></Icon1>
+                <Text style={[styles.date1,{color:colors.text}]}>05 Feb - 08 Feb</Text>
+                <Icon1 name="arrowright" size={15} onPress={() =>navigation.navigate("WeekLogin")}
+                style={{paddingLeft:56,paddingTop:15,fontSize:25,color:colors.border ,}}></Icon1>
                 </View>
             </View>
 
-            <View style={styles.view4}>
+            <View style={[styles.view4,{backgroundColor:colors.card}]}>
                 <View style={{flexDirection:'row'}}>
-                <Text style={{paddingLeft:40,paddingTop:20,paddingRight:40,fontSize:15,fontFamily:"OpenSansRegular",
-                    color:"#696969"}}>Last week</Text>
-                <Text style={{fontSize:15,paddingLeft:45,paddingTop:20,fontFamily:"OpenSansRegular",
-                    color:"#696969"}}>6 hr</Text>
+                <Text style={[styles.last,{color:colors.text}]}>Last week</Text>
+                <Text style={[styles.hr,{color:colors.text}]}>6 hr</Text>
                 </View>
 
                 <View style={{flexDirection:'row'}}>
-                <Text style={{fontSize:15,paddingTop:15,paddingLeft:40,fontFamily:"OpenSansRegular",
-                    color:"#696969"}}>Date</Text>
-                <Icon1 name="arrowright" size={15} onPress={() =>navigation.navigate("Payout")}
-                style={{paddingLeft:120,paddingTop:15,fontSize:25,color:"#FDC913"}}></Icon1>
+                <Text style={[styles.date,{color:colors.text}]}>Date</Text>
+                <Icon1 name="arrowright" size={15} onPress={() =>navigation.navigate("WeekLogin")}
+                style={{paddingLeft:120,paddingTop:15,fontSize:25,color:colors.border }}></Icon1>
                 </View>
             </View>
         </View>
@@ -96,6 +93,68 @@ const styles= StyleSheet.create({
         marginTop:20,
         marginRight:30,
         //flexDirection:'row'
-    }
+    },
+    login:{
+        fontSize:24,
+        marginBottom:40,
+        color:"#696969",
+        fontFamily:"OpenSansBold",
+},
+today:{
+    paddingLeft:30,
+    paddingTop:20,
+    marginRight:90,
+    fontSize:15,
+    fontFamily:"OpenSansRegular",
+    color:"#696969"
+},
+date:{
+    fontSize:15,
+    paddingTop:15,
+    paddingLeft:40,
+    fontFamily:"OpenSansRegular",
+    color:"#696969"
+},
+past:{
+    marginLeft:35,
+    fontSize:20,
+    fontFamily:"OpenSansSemiBold",
+    color:"#696969"
+},
+om:{
+    paddingTop:20,
+    fontSize:15,
+    fontFamily:"OpenSansRegular",
+    color:"#696969"
+},
+hr:{
+    fontSize:15,
+    paddingLeft:45,
+    paddingTop:20,
+    fontFamily:"OpenSansRegular",
+    color:"#696969"
+},
+hr2:{
+    fontSize:15,
+    paddingLeft:55,
+    paddingTop:20,
+    fontFamily:"OpenSansRegular",
+    color:"#696969"
+},
+last:{
+    paddingLeft:40,
+    paddingTop:20,
+    paddingRight:40,
+    fontSize:15,
+    fontFamily:"OpenSansRegular",
+    color:"#696969"
+},
+date1:{
+    fontSize:15,
+    paddingTop:15,
+    paddingLeft:40,
+    fontFamily:"OpenSansRegular",
+    color:"#696969"
+}
     
 })

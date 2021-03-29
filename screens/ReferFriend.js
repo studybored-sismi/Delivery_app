@@ -3,56 +3,42 @@ import { StyleSheet, Text, TextInput, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icons from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import {useTheme } from 'react-native-paper'
 
 
 const ReferFriend = ({navigation}) =>{
+    const { colors } = useTheme()
+    const theme = useTheme()
     var items
     const [item, setItem] = useState('Ernakulam');
     return(
-        <View style={{paddingTop:50,backgroundColor:"#f5fffa",paddingBottom:300}}>
+        <View style={{paddingTop:10,paddingBottom:300}}>
           
           <View style={{flexDirection:'row'}}>
-            <Icons name="arrow-back" size={30} style={{marginLeft:20,marginRight:20,color:"#FDC913"}}></Icons>
-            <Text style={{fontSize:30,marginBottom:30,color:"#696969",fontFamily:"OpenSansBold",}}>Refer a Friend</Text>
+            <TouchableOpacity onPress={()=>navigation.goBack()}>
+            <Icons name="arrow-back" size={30} style={{marginLeft:20,marginRight:50,color:"#FDC913"}}></Icons>
+            </TouchableOpacity>
+            <Text style={{fontSize:30,marginBottom:30,color:colors.text,fontFamily:"OpenSansBold",}}>Refer a Friend</Text>
             </View>
 
-            <Text style={{marginLeft:35,marginBottom:20,fontSize:20,color:"#696969",
+            <Text style={{marginLeft:35,marginBottom:20,fontSize:20,color:colors.text,
             fontFamily:"OpenSansSemiBold"}}>Enter Friend's Details</Text>
 
-            <View style={styles.view5}>
-            <Text style={{marginLeft:35,color:"#696969",fontFamily:"OpenSansRegular",}}>Full Name</Text>
-            <TextInput style={styles.input}></TextInput>
+            <View style={[styles.view5,{backgroundColor:colors.card}]}>
+            <Text style={{marginLeft:35,color:colors.text,fontFamily:"OpenSansRegular",}}>Full Name</Text>
+            <TextInput style={[styles.input,{color:colors.text,borderBottomColor:colors.text}]}></TextInput>
 
-            <Text style={{marginLeft:35,marginTop:20,color:"#696969",fontFamily:"OpenSansRegular",}}>Mobile Number</Text>
-            <TextInput style={styles.input} keyboardType="number-pad"></TextInput>
+            <Text style={{marginLeft:35,marginTop:20,color:colors.text,fontFamily:"OpenSansRegular",}}>Mobile Number</Text>
+            <TextInput style={[styles.input,{color:colors.text,borderBottomColor:colors.text}]} keyboardType="number-pad"></TextInput>
 
-            <Text style={{marginLeft:35,marginTop:20,marginBottom:10,color:"#696969",fontFamily:"OpenSansRegular",}}>City</Text>
+            <Text style={{marginLeft:35,marginTop:20,marginBottom:10,
+                color:colors.text,fontFamily:"OpenSansRegular",}}>City</Text>
 
-            <DropDownPicker
-            items={[
-              { label: 'Ernakulam', value: 'Ernakulam' },
-              { label: 'Vytila', value: 'Vytila' },
+            <TextInput style={[styles.input,{color:colors.text,borderBottomColor:colors.text}]} keyboardType="number-pad"></TextInput>
 
-
-            ]}
-            defaultValue={items}
-            containerStyle={{ height: 40, width: "80%", marginLeft: 42 }}
-            placeholder="Select City"
-            style={styles.drop}
-            globalTextStyle={{color:"#696969",fontFamily:"OpenSansRegular",}}
-            itemStyle={{
-              justifyContent: 'flex-start'
-            }}
-            dropDownStyle={{ backgroundColor: '#fafafa' }}
-            onChangeItem={(item) => setItem(item.value)}
-
-          />
-
-           
-
-            <TouchableOpacity style={{ paddingTop: 5 }} onPress={() =>navigation.navigate("Earnings")}>
+            <TouchableOpacity style={{ paddingTop: 5 }} onPress={() =>navigation.navigate("ReferFriend2")}>
                             <Text style={{
-                                backgroundColor: "#FDC913",fontSize:15,
+                                backgroundColor:colors.primary,fontSize:15,
                                 color: "white", height: 38, paddingTop: 8, fontFamily:"OpenSansSemiBold",
                                 paddingLeft: 35, paddingRight: 20, paddingBottom: 10,
                                  borderRadius: 20, width: "50%", marginLeft:90,marginTop:20
