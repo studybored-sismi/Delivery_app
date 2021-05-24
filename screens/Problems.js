@@ -10,7 +10,7 @@ import { useState } from 'react/cjs/react.development';
     const theme = useTheme()
 
     const [problem,setProblem]= useState([
-      {name:'Not Receiving Orders',key:'1'},
+      {name:'Not Receiving Orders', key:'1'},
       {name:'Orders',key:'2'},
     ]);
 
